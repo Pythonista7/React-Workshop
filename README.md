@@ -31,3 +31,13 @@ function App() {
   )
 }
 ```
+
+
+## Contents/Branches
+1. main (completed project)
+2. basic/chakra-ui
+3. basic/input-component
+4. basic/shapes
+5. manage-state/lifting-state-up
+6. manage-state/recoiljs
+7. final/add-canvas

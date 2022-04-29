@@ -16,7 +16,7 @@ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ref : https://chakra-ui.com/guides/getting-started/cra-guide
 
 ## Contents
-- main
-- basic/chakra-ui
-- basic/input-component
-- basic/shapes
+1. main
+2. basic/chakra-ui
+3. basic/input-component
+4. basic/shapes

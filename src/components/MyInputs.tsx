@@ -9,11 +9,16 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function MyInputs(props: any) {
-  const color = "#000000";
-  const scale = "30";
+  const [color, setColor] = useState<string>("#000000");
+  const [scale, setScale] = useState<number>(30);
+
+  useEffect(() => {
+    console.log("color = ", color);
+    console.log("scale = ", scale);
+  }, [color, scale]);
 
   return (
     <>
@@ -30,8 +35,7 @@ function MyInputs(props: any) {
               type="color"
               border="none"
               onChange={(e) => {
-                console.log("color");
-                console.log(e.target.value);
+                setColor(e.target.value);
               }}
             />
           </Flex>
@@ -41,8 +45,7 @@ function MyInputs(props: any) {
             aria-label="slider-ex-1"
             defaultValue={30}
             onChange={(e) => {
-              console.log("scale");
-              console.log(e);
+              setScale(e);
             }}
           >
             <SliderTrack>
@@ -57,13 +60,3 @@ function MyInputs(props: any) {
 }
 
 export default MyInputs;
-
-/*
-  const [color, setColor] = useState<string>("#000000");
-  const [scale, setScale] = useState<number>(30);
-
-  useEffect(() => {
-    console.log("color = ", color);
-    console.log("scale = ", scale);
-  }, [color, scale]);
-*/

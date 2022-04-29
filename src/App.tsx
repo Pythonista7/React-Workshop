@@ -1,21 +1,42 @@
 import { Container } from "@chakra-ui/react";
 import MyInputs from "./components/MyInputs";
-import Shapes from "./components/Canvas";
+import Canvas from "./components/Canvas";
 import { useState } from "react";
 
+export interface ShapeProperties {
+  id: string;
+  color: string;
+  scale: number;
+}
+
 function App() {
-  const [color, setColor] = useState<string>("#000000");
-  const [scale, setScale] = useState<number>(30);
+  const [selectedId, setSelectedId] = useState<string | null>("square");
+
+  const [properties, setProperties] = useState<ShapeProperties[]>([
+    {
+      id: "square",
+      color: "#000000",
+      scale: 100,
+    },
+    {
+      id: "circle",
+      color: "#000000",
+      scale: 100,
+    },
+  ]);
 
   return (
     <Container padding={10} minW="full" minH="100vh" bg="white">
       <MyInputs
-        color={color}
-        setColor={setColor}
-        scale={scale}
-        setScale={setScale}
+        properties={properties}
+        setProperties={setProperties}
+        selectedId={selectedId}
       />
-      <Shapes color={color} scale={scale} />
+      <Canvas
+        properties={properties}
+        setSelectedId={setSelectedId}
+        selectedId={selectedId}
+      />
     </Container>
   );
 }

@@ -10,18 +10,22 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { ShapeProperties } from "../App";
 
 function MyInputs({
-  color,
-  setColor,
-  scale,
-  setScale,
+  properties,
+  setProperties,
+  selectedId,
 }: {
-  color: string;
-  setColor: React.Dispatch<React.SetStateAction<string>>;
-  scale: number;
-  setScale: React.Dispatch<React.SetStateAction<number>>;
+  properties: ShapeProperties[];
+  setProperties: React.Dispatch<React.SetStateAction<ShapeProperties[]>>;
+  selectedId: string | null;
 }) {
+  const { color, scale } = properties.find(({ id }) => id === selectedId) ?? {
+    color: "#000000",
+    shape: 30,
+  };
+
   return (
     <Box
       rounded={5}
@@ -44,8 +48,13 @@ function MyInputs({
             size="lg"
             type="color"
             border="none"
+            value={color}
             onChange={(e) => {
-              setColor(e.target.value);
+              setProperties((prev) =>
+                prev.map((p) =>
+                  p.id === selectedId ? { ...p, color: e.target.value } : p
+                )
+              );
             }}
           />
         </Flex>
@@ -54,9 +63,12 @@ function MyInputs({
         <Text color="black.500">Scale {scale} </Text>
         <Slider
           aria-label="slider-ex-1"
-          defaultValue={30}
+          defaultValue={100}
+          value={scale}
           onChange={(e) => {
-            setScale(e);
+            setProperties((prev) =>
+              prev.map((p) => (p.id === selectedId ? { ...p, scale: e } : p))
+            );
           }}
         >
           <SliderTrack>

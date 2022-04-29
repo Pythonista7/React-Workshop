@@ -9,17 +9,19 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import React from "react";
 
-function MyInputs() {
-  const [color, setColor] = useState<string>("#000000");
-  const [scale, setScale] = useState<number>(30);
-
-  useEffect(() => {
-    console.log("color = ", color);
-    console.log("scale = ", scale);
-  }, [color, scale]);
-
+function MyInputs({
+  color,
+  setColor,
+  scale,
+  setScale,
+}: {
+  color: string;
+  setColor: React.Dispatch<React.SetStateAction<string>>;
+  scale: number;
+  setScale: React.Dispatch<React.SetStateAction<number>>;
+}) {
   return (
     <Box
       rounded={5}

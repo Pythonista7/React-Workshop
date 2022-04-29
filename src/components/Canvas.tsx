@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
-function Shapes() {
+function Shapes({ color, scale }: { color: string; scale: number }) {
   return (
     <Box w="full" h="full">
       <Box
@@ -9,16 +9,18 @@ function Shapes() {
         left="60%"
         height={100}
         width={100}
-        backgroundColor="blue.500"
+        backgroundColor={color}
+        transform={`scale(${scale / 100})`}
       />
       <Box
         position="absolute"
         top="50%"
         left="40%"
-        height={100}
         width={100}
+        height={100}
         borderRadius="50%"
-        backgroundColor="blue.500"
+        backgroundColor={color}
+        transform={`scale(${scale / 100})`}
       />
     </Box>
   );

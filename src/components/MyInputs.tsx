@@ -9,22 +9,40 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
-import { ShapeProperties } from "../App";
+import React, { useMemo } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { circleState, selectedIdState, squareState } from "../store/app.store";
 
-function MyInputs({
-  properties,
-  setProperties,
-  selectedId,
-}: {
-  properties: ShapeProperties[];
-  setProperties: React.Dispatch<React.SetStateAction<ShapeProperties[]>>;
-  selectedId: string | null;
-}) {
-  const { color, scale } = properties.find(({ id }) => id === selectedId) ?? {
-    color: "#000000",
-    shape: 30,
-  };
+const defaultProperties = {
+  color: "#000000",
+  scale: 100,
+};
+
+function MyInputs() {
+  const [square, setSquare] = useRecoilState(squareState);
+  const [circle, setCircle] = useRecoilState(circleState);
+
+  const selectedId = useRecoilValue(selectedIdState);
+
+  const { color, scale } = useMemo(() => {
+    const properties = [square, circle];
+
+    return properties.find(({ id }) => id === selectedId) ?? defaultProperties;
+  }, [square, circle, selectedId]);
+
+  function setProperties(color: string, scale: number) {
+    const properties = [square, circle];
+
+    const selectedProperty = properties.find(({ id }) => id === selectedId);
+
+    if (selectedProperty) {
+      if (selectedProperty.id === square.id) {
+        setSquare({ ...selectedProperty, color, scale });
+      } else {
+        setCircle({ ...selectedProperty, color, scale });
+      }
+    }
+  }
 
   return (
     <Box
@@ -50,11 +68,7 @@ function MyInputs({
             border="none"
             value={color}
             onChange={(e) => {
-              setProperties((prev) =>
-                prev.map((p) =>
-                  p.id === selectedId ? { ...p, color: e.target.value } : p
-                )
-              );
+              setProperties(e.target.value, scale);
             }}
           />
         </Flex>
@@ -66,9 +80,7 @@ function MyInputs({
           defaultValue={100}
           value={scale}
           onChange={(e) => {
-            setProperties((prev) =>
-              prev.map((p) => (p.id === selectedId ? { ...p, scale: e } : p))
-            );
+            setProperties(color, e);
           }}
         >
           <SliderTrack>

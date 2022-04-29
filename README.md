@@ -31,6 +31,3 @@ function App() {
   )
 }
 ```
-
-### Using Components
- 1. Let's setup our main page with chakra UI

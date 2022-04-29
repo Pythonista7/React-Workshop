@@ -1,8 +1,8 @@
 import "./App.css";
-import { Box, Container, Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Container, Grid, GridItem, Heading } from "@chakra-ui/react";
 
 import MyInputs from "./components/MyInputs";
-import { useEffect, useState } from "react";
+import Shapes from "./components/Shapes";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Heading color="black" alignContent={"center"}>
               Canvas
             </Heading>
-            <Box bg={"black"} minW="500px" minH="500px"></Box>
+            <Shapes />
           </GridItem>
         </Grid>
       </Container>

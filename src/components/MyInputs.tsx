@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-function MyInputs(props: any) {
+function MyInputs() {
   const [color, setColor] = useState<string>("#000000");
   const [scale, setScale] = useState<number>(30);
 
@@ -21,41 +21,49 @@ function MyInputs(props: any) {
   }, [color, scale]);
 
   return (
-    <>
-      <Box rounded={5} padding={5} alignContent="center" bg="gray.200">
-        <Stack spacing={4} align="stretch">
-          <Flex>
-            <Text color="black.500">Color {color}</Text>
+    <Box
+      rounded={5}
+      padding={5}
+      alignContent="center"
+      bg="gray.200"
+      position="absolute"
+    >
+      <Stack spacing={4} align="stretch">
+        {/* Color Input */}
+        <Flex>
+          <Text w={40} color="black.500">
+            Color {color}
+          </Text>
 
-            <Input
-              marginLeft={10}
-              aria-label="color"
-              minW={100}
-              size="lg"
-              type="color"
-              border="none"
-              onChange={(e) => {
-                setColor(e.target.value);
-              }}
-            />
-          </Flex>
-          <Text color="black.500">Scale {scale} </Text>
-
-          <Slider
-            aria-label="slider-ex-1"
-            defaultValue={30}
+          <Input
+            marginLeft={10}
+            aria-label="color"
+            minW={100}
+            size="lg"
+            type="color"
+            border="none"
             onChange={(e) => {
-              setScale(e);
+              setColor(e.target.value);
             }}
-          >
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-        </Stack>
-      </Box>
-    </>
+          />
+        </Flex>
+
+        {/* Scale input */}
+        <Text color="black.500">Scale {scale} </Text>
+        <Slider
+          aria-label="slider-ex-1"
+          defaultValue={30}
+          onChange={(e) => {
+            setScale(e);
+          }}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </Stack>
+    </Box>
   );
 }
 

@@ -15,8 +15,8 @@ function Square() {
     <>
       <Rect
         id="square-select"
-        x={window.innerWidth / 1.5 - 5}
-        y={window.innerHeight / 2 - 5}
+        x={window.innerWidth / 1.5 - square.scale / 20}
+        y={window.innerHeight / 2 - square.scale / 20}
         offsetX={1.5}
         offsetY={1.5}
         width={3.1}

@@ -51,6 +51,7 @@ function MyInputs() {
       alignContent="center"
       bg="gray.200"
       position="absolute"
+      zIndex={10}
     >
       <Stack spacing={4} align="stretch">
         {/* Color Input */}

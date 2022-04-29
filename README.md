@@ -32,6 +32,53 @@ function App() {
 }
 ```
 
+## Recoil
+Install Recoil:
+```
+npm i recoil
+```
+ref : https://recoiljs.org/docs/introduction/installation
+
+### Provider Setup
+```jsx
+import * as React from 'react'
+
+// 1. import `RecoilRoot` component
+import { RecoilRoot } from "recoil";
+
+function App() {
+  // 2. Wrap RecoilRoot at the root of your app
+  return (
+    <RecoilRoot>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </RecoilRoot>  
+  )
+}
+```
+
+## Konva
+Install Konva
+```
+npm i konva react-konva
+```
+ref: https://konvajs.org/docs/react/index.html
+
+### Basic setup
+```jsx
+import { Stage, Layer } from "react-konva";
+
+function Canvas() {
+  return(
+    <Stage height={300} width={300}>
+      <Layer>
+        {...}
+      </Layer>
+    </Stage>
+  )
+}
+```
 
 ## Contents/Branches
 1. main (completed project)

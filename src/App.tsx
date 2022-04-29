@@ -1,6 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -19,8 +19,27 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <div>
+        {/* <header>
+          <h1>Welcome to React</h1>
+          <h2>Getting Started React</h2>
+          <h3>JavaScript Library</h3>
+          <p>Incredible.dev</p>
+          <small>2022</small>
+        </header> */}
+      </div>
     </div>
   );
 }
 
 export default App;
+
+/*
+  // const style: React.CSSProperties = {
+  //   backgroundColor: "red",
+  //   border: "2px solid orange",
+  //   color: "black",
+  //   fontSize: "18px",
+  // };
+  */

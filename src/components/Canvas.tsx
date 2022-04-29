@@ -1,5 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { Circle as KonvaCircle, Layer, Rect, Stage } from "react-konva";
+import {
+  useRecoilBridgeAcrossReactRoots_UNSTABLE,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 import { circleState, selectedIdState, squareState } from "../store/app.store";
 
 function Square() {
@@ -7,18 +12,18 @@ function Square() {
   const [selectedId, setSelectedId] = useRecoilState(selectedIdState);
 
   return (
-    <Box
-      position="absolute"
-      top="40%"
-      left="60%"
-      height={300}
-      width={300}
-      backgroundColor={square.color}
-      transform={`scale(${square.scale / 100})`}
-      ringColor={selectedId === square.id ? "blue.500" : "transparent"}
-      ringOffset="5px"
-      ring="2px"
-      cursor="pointer"
+    <Rect
+      x={window.innerWidth / 1.5}
+      y={window.innerHeight / 2}
+      offsetX={1.5}
+      offsetY={1.5}
+      width={3}
+      height={3}
+      fill={square.color}
+      scaleX={square.scale}
+      scaleY={square.scale}
+      stroke={selectedId === square.id ? "#3182CE" : "transparent"}
+      strokeWidth={0.05}
       onClick={() => {
         setSelectedId(square.id);
       }}
@@ -31,19 +36,15 @@ function Circle() {
   const [selectedId, setSelectedId] = useRecoilState(selectedIdState);
 
   return (
-    <Box
-      position="absolute"
-      top="40%"
-      left="20%"
-      width={300}
-      height={300}
-      borderRadius="50%"
-      backgroundColor={circle.color}
-      transform={`scale(${circle.scale / 100})`}
-      ringColor={selectedId === circle.id ? "blue.500" : "transparent"}
-      ringOffset="5px"
-      ring="2px"
-      cursor="pointer"
+    <KonvaCircle
+      x={window.innerWidth / 3}
+      y={window.innerHeight / 2}
+      radius={1.5}
+      fill={circle.color}
+      scaleX={circle.scale}
+      scaleY={circle.scale}
+      stroke={selectedId === circle.id ? "#3182CE" : "transparent"}
+      strokeWidth={0.05}
       onClick={() => {
         setSelectedId(circle.id);
       }}
@@ -52,10 +53,21 @@ function Circle() {
 }
 
 function Shapes() {
+  const Bridge = useRecoilBridgeAcrossReactRoots_UNSTABLE();
+
   return (
     <Box w="full" h="full">
-      <Square />
-      <Circle />
+      <Stage
+        height={window.innerHeight - window.innerHeight * 0.1}
+        width={window.innerWidth}
+      >
+        <Bridge>
+          <Layer>
+            <Square />
+            <Circle />
+          </Layer>
+        </Bridge>
+      </Stage>
     </Box>
   );
 }

@@ -1,45 +1,29 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { Box, Button, Container, Heading } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Container minW="full" minH="full" bg="blue.600" centerContent>
+        <Heading>Cool Stuff!</Heading>
+        <Box
+          margin="5"
+          padding="4"
+          bg="blue.300"
+          color="black"
+          minW="2xl"
+          minH="xl"
         >
-          Learn React
-        </a>
-      </header>
-
-      <div>
-        {/* <header>
-          <h1>Welcome to React</h1>
-          <h2>Getting Started React</h2>
-          <h3>JavaScript Library</h3>
-          <p>Incredible.dev</p>
-          <small>2022</small>
-        </header> */}
-      </div>
+          Blank
+        </Box>
+        <Button colorScheme="blackAlpha" padding="5" margin="5">
+          Done
+        </Button>
+      </Container>
     </div>
   );
 }
 
 export default App;
-
-/*
-  // const style: React.CSSProperties = {
-  //   backgroundColor: "red",
-  //   border: "2px solid orange",
-  //   color: "black",
-  //   fontSize: "18px",
-  // };
-  */
